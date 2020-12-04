@@ -19,7 +19,7 @@ error_reporting(0);
     }
     if($orderbread > 0) {
         $vadapav = 0;
-        for($vada=1; $vada <= $orderbread; $vada++){
+        for($vada=1; $vada <= $vadpav; $vada++){
              $vadapav = $vadapav + 1;
             if($orderbread == 0){
             break;
@@ -40,7 +40,7 @@ else {
     }
     if($orderbread > 0) {
         $samosa1 = 0;
-        for($num=1; $num <= $orderbread; $num++){
+        for($num=1; $num <= $samosa; $num++){
             $samosa1 = $samosa1 + 1;
             if($orderbread == 0){
             break;
