@@ -1,13 +1,56 @@
 <?php
+error_reporting(0);
     $vadpav=$_POST['vadpav'];
     $vadpavprice=$_POST['vadpavprice'];
     $samosa=$_POST['samosa'];
     $samosaprice=$_POST['samosaprice'];
+    $bread=$_POST['bread'];
   
-    $vada = $vadpav * $vadpavprice;
-    $samosapav = $samosa * $samosaprice;
-    $profit = $vada + $samosapav;
-    
+    $orderbread = floor($bread / 2);
+ 
+   if($samosaprice > $vadpavprice) {
+    $samosa1 = 0;  
+    for($num= 1; $num <= $samosa ; $num++){
+        $orderbread = $orderbread - 1; 
+        $samosa1 = $samosa1 + 1;
+       if($orderbread == 0){
+       break;
+       }
+    }
+    if($orderbread > 0) {
+        $vadapav = 0;
+        for($vada=1; $vada <= $orderbread; $vada++){
+             $vadapav = $vadapav + 1;
+            if($orderbread == 0){
+            break;
+            }
+        }
+    }
+
+    }
+else {
+    $vadapav = 0;  
+    for($vada= 1; $vada <= $vadpav ; $vada++){
+        $orderbread = $orderbread - 1; 
+        $vadapav = $vadapav + 1;
+       if($orderbread == 0){
+
+       break;
+       }
+    }
+    if($orderbread > 0) {
+        $samosa1 = 0;
+        for($num=1; $num <= $orderbread; $num++){
+            $samosa1 = $samosa1 + 1;
+            if($orderbread == 0){
+            break;
+            }
+        }
+    }
+
+}
+$profit = ($samosa1 * $samosaprice) + ($vadapav * $vadpavprice);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,7 +105,7 @@
                         <div class="row">
                             <div class="col">
                                 <label for="bread">Breads</label>
-                                <input type="number" class="form-control" id="bread">
+                                <input type="number" class="form-control" id="bread" name="bread">
                             </div>
                             <div class="col">
                                 <label for="breadprice">Price</label>
@@ -94,14 +137,14 @@
         var vadpavprice = $('#vadpavprice').val();
         var samosa = $('#samosa').val();
         var samosaprice = $('#samosaprice').val();
+        var bread = $('#bread').val();
     
      
      $.ajax({
       type: 'post',
       data:  {
-			 vadpav:vadpav, vadpavprice:vadpavprice, samosa:samosa, samosaprice:samosaprice  
-		 },
-    
+		 vadpav:vadpav, vadpavprice:vadpavprice, samosa:samosa, samosaprice:samosaprice, bread:bread
+	},
      });
     });
   
