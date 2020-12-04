@@ -6,8 +6,8 @@ error_reporting(0);
     $samosaprice=$_POST['samosaprice'];
     $bread=$_POST['bread'];
   
-    $orderbread = floor($bread / 2);
- 
+   $orderbread = floor($bread / 2);
+//  echo "<br>";
    if($samosaprice > $vadpavprice) {
     $samosa1 = 0;  
     for($num= 1; $num <= $samosa ; $num++){
@@ -17,10 +17,14 @@ error_reporting(0);
        break;
        }
     }
+//     echo $orderbread;
+//  echo "<br>";
+
     if($orderbread > 0) {
         $vadapav = 0;
         for($vada=1; $vada <= $vadpav; $vada++){
-             $vadapav = $vadapav + 1;
+      	    $orderbread = $orderbread - 1; 
+            $vadapav = $vadapav + 1;
             if($orderbread == 0){
             break;
             }
@@ -41,6 +45,7 @@ else {
     if($orderbread > 0) {
         $samosa1 = 0;
         for($num=1; $num <= $samosa; $num++){
+      	    $orderbread = $orderbread - 1; 
             $samosa1 = $samosa1 + 1;
             if($orderbread == 0){
             break;
@@ -49,6 +54,9 @@ else {
     }
 
 }
+// echo $samosa1;
+// echo "<br>";
+// echo $vadapav;
 $profit = ($samosa1 * $samosaprice) + ($vadapav * $vadpavprice);
 
 ?>
@@ -143,8 +151,9 @@ $profit = ($samosa1 * $samosaprice) + ($vadapav * $vadpavprice);
      $.ajax({
       type: 'post',
       data:  {
-		 vadpav:vadpav, vadpavprice:vadpavprice, samosa:samosa, samosaprice:samosaprice, bread:bread
-	},
+			 vadpav:vadpav, vadpavprice:vadpavprice, samosa:samosa, samosaprice:samosaprice, bread:bread
+		 },
+    
      });
     });
   
